@@ -8,11 +8,21 @@ export class PurchaseList extends Component {
       let user = users.get(purchase.get('UserId'));
       return <Purchase dispatch={dispatch} user={user} purchase={purchase}/>
     });
-
     return (
-      <ul>
-        {purchases}
-      </ul>
+      <table className="pure-table pure-table-horizontal">
+        <thead>
+          <tr>
+            <td>Päivämäärä</td>
+            <td>Ostaja</td>
+            <td>Tuote</td>
+            <td>Hinta</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          {purchases}
+        </tbody>
+      </table>
     );
   }
 }

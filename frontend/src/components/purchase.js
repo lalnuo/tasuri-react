@@ -5,8 +5,9 @@ export class Purchase extends Component {
   constructor(props) {
     super(props);
     const { purchase, user, dispatch } = this.props
-
+    console.log(purchase.get('createdAt'))
     this.state = {
+      date: purchase.get('createdAt').split('T')[0], // come up with better formatting
       name: purchase.get('name'),
       price: purchase.get('price'),
       username: user.get('name'),
@@ -17,9 +18,19 @@ export class Purchase extends Component {
   render() {
     const { purchase, dispatch } = this.props;
     return (
-      <li>
-        {this.state.username} {this.state.name} {this.state.price} <button onClick={() => dispatch(deletePurchase(this.state.id))}>Poista</button>
-      </li>
+      <tr>
+        <td>{this.state.date}</td>
+        <td>{this.state.username}</td>
+        <td>{this.state.name}</td>
+        <td>{this.state.price}</td>
+        <td>
+          <button
+            className="pure-button button-warning"
+            onClick={() => dispatch(deletePurchase(this.state.id))}>
+           Poista
+         </button><
+         /td>
+      </tr>
     )
   }
 }

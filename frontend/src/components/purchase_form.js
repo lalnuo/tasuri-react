@@ -23,23 +23,47 @@ export class PurchaseForm extends Component {
       price: this.state.price,
       userId: parseInt(this.state.userId)
     };
+    this.setState({name: '', price: 0})
     this.props.dispatch(sendPurchase(purchase));
   }
 
   render() {
     const { users } = this.props;
-    this.state.userId = users.first() ? users.first().get('id') : null;
+    if (!this.state.userId) {
+      this.state.userId = users.first() ? users.first().get('id') : null;
+    }
     const options = users.map(user => {
       return <option value={user.get('id')} key={user.get('id')}>{user.get('name')}</option>
     });
     return (
-      <form>
-        <select value={this.state.userId} onChange={this.updateField.bind(this, 'userId')}>
+      <form className="pure-form pure-form-stacked">
+        <fieldset className="pure-group">
+        <label>Ostaja</label>
+        <select
+          value={this.state.userId}
+          onChange={this.updateField.bind(this, 'userId')}>
           {options}
         </select>
-        <input value={this.state.name} onChange={this.updateField.bind(this, 'name')} type="text"></input>
-        <input value={this.state.price} onChange={this.updateField.bind(this, 'price')} type="number"></input>
-        <button onClick={this.createPurchase.bind(this)}>Lisää</button>
+        <label>Tuotteen nimi</label>
+        <input
+          value={this.state.name}
+          onChange={this.updateField.bind(this, 'name')}
+          placeholder="Tuotteen nimi"
+          type="text">
+        </input>
+        <label>Hinta</label>
+        <input
+          value={this.state.price}
+          onChange={this.updateField.bind(this, 'price')}
+          type="number"
+          placeholder="Hinta"
+          ></input>
+        <button
+          className="button-success pure-button"
+          onClick={this.createPurchase.bind(this)}>
+          Lisää
+        </button>
+        </fieldset>
       </form>
     );
   }

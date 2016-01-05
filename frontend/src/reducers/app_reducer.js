@@ -30,7 +30,7 @@ function updateBalances(state) {
   let consumingByUserId = {};
   let max = 0;
   state.get('purchases').forEach(purchase => {
-    let userId = purchase.get('userId');
+    let userId = purchase.get('UserId');
     if (!consumingByUserId[userId]) consumingByUserId[userId] = 0;
     consumingByUserId[userId] += purchase.get('price');
     if (consumingByUserId[userId] > max) max = consumingByUserId[userId];
