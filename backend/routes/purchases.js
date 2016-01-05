@@ -17,4 +17,8 @@ router.post('/', function(req, res, next) {
   }).catch(() => console.log('Failed'));
 });
 
+router.delete('/:id', function(req, res, next) {
+  models.Purchase.destroy({where: {id: req.params.id}});
+})
+
 module.exports = router;

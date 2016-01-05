@@ -7,7 +7,6 @@ export class PurchaseForm extends Component {
     this.state = {
       name: '',
       price: 0,
-      userId: null
     }
   }
 
@@ -29,9 +28,10 @@ export class PurchaseForm extends Component {
 
   render() {
     const { users } = this.props;
+    this.state.userId = users.first() ? users.first().get('id') : null;
     const options = users.map(user => {
       return <option value={user.get('id')} key={user.get('id')}>{user.get('name')}</option>
-    })
+    });
     return (
       <form>
         <select value={this.state.userId} onChange={this.updateField.bind(this, 'userId')}>

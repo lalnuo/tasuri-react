@@ -2,13 +2,30 @@ import fetch from 'isomorphic-fetch'
 import "babel-polyfill";
 import { Map, List, fromJS } from 'immutable'
 
-
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
+export const RECEIVE_PURCHASES = 'RECEIVE_PURCHASES'
+export const ADD_PURCHASE = 'ADD_PURCHASE'
+export const DELETE_PURCHASE = 'DELETE_PURCHASE'
 
-function requestUsers() {
-  return {
-    type: REQUEST_USERS
+const headers = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+};
+
+export function fetchUsers() {
+  return dispatch => {
+    return fetch('http://localhost:9000/users')
+      .then(response => response.json())
+      .then(json => dispatch(receiveUsers(json)));
+  }
+}
+
+export function fetchPurchases() {
+  return dispatch => {
+    return fetch('http://localhost:9000/purchases')
+      .then(response => response.json())
+      .then(json => dispatch(receivePurchases(json)));
   }
 }
 
@@ -21,40 +38,37 @@ function receiveUsers(users) {
   }
 }
 
-function addingPurchase() {
+function receivePurchases(purchases) {
+  let purchasesMap = new Map();
+  purchases.forEach(purchase => purchasesMap = purchasesMap.set(purchase.id, fromJS(purchase)));
   return {
-    type: 'ADDING_PURCHASE'
+    type: RECEIVE_PURCHASES,
+    purchases: purchasesMap
   }
 }
 
 function addPurchase(purchase) {
   return {
-    type: 'ADD_PURCHASE',
+    type: ADD_PURCHASE,
     purchase: fromJS(purchase)
   }
 }
 
+export function deletePurchase(purchaseId) {
+  fetch('http://localhost:9000/purchases/' + purchaseId, { method: 'DELETE' });
+  return {
+    type: DELETE_PURCHASE,
+    purchaseId: purchaseId
+  }
+}
 
 export function sendPurchase(purchase) {
     return dispatch => {
-      dispatch(addingPurchase());
       return fetch('http://localhost:9000/purchases', {
         method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+        headers: headers,
         body: JSON.stringify(purchase)
       }).then(response => response.json())
         .then(json => dispatch(addPurchase(json)));
     }
-}
-
-export function fetchUsers() {
-  return dispatch => {
-    dispatch(requestUsers());
-    return fetch('http://localhost:9000/users')
-      .then(response => response.json())
-      .then(json => dispatch(receiveUsers(json)));
-  }
 }

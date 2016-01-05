@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { PurchaseList } from './components/purchase_list'
 import { PurchaseForm } from './components/purchase_form'
+import { BalanceList } from './components/balance_list'
 import { connect } from 'react-redux'
 
 export default class App extends Component {
   render() {
-    const { users, products, dispatch, purchases } = this.props;
+    const { users, dispatch, purchases } = this.props;
     return (
       <div>
+        <BalanceList users={users}/>
         <PurchaseForm dispatch={dispatch} users={users}/>
-        <PurchaseList purchases={purchases}/>
+        <PurchaseList dispatch={dispatch} users={users} purchases={purchases}/>
       </div>
     );
   }

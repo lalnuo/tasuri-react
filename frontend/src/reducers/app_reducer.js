@@ -1,21 +1,21 @@
 import { Map, List, fromJS } from 'immutable'
+import { ADD_PURCHASE, RECEIVE_USERS, RECEIVE_PURCHASES, DELETE_PURCHASE } from '../actions/actions'
 const initialState = fromJS({
   purchases: {},
-  users: [],
+  users: {},
 });
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case 'ADD_PURCHASE':
+    case ADD_PURCHASE:
       return updateBalances(addPurchase(state, action));
-    case 'REQUEST_USERS':
-      return state;
+    case 'RECEIVE_PURCHASES':
+      return updateBalances(state.set('purchases', action.purchases));
     case 'RECEIVE_USERS':
       return state.set('users', action.users);
-    case 'REMOVE_PURCHASE':
-      return state;
-    case 'REMOVE_PURCHASE':
-
+    case DELETE_PURCHASE:
+      state = state.update('purchases', p => p.delete(action.purchaseId));
+      return updateBalances(state);
     default:
       return state;
   }
