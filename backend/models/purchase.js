@@ -2,11 +2,12 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Purchase = sequelize.define("Purchase", {
-    title: DataTypes.STRING
+    name: DataTypes.STRING,
+    price: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
-        Purchase.belongsTo(models.Purchase, {
+        Purchase.belongsTo(models.User, {
           onDelete: "CASCADE",
           foreignKey: {
             allowNull: false

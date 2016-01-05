@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { UserSelect } from './components/user_select'
-import { ProductList } from './components/product_list'
+import { PurchaseList } from './components/purchase_list'
+import { PurchaseForm } from './components/purchase_form'
 import { connect } from 'react-redux'
 
 export default class App extends Component {
   render() {
-    const { users, products } = this.props
-    return (<div><UserSelect users={users}/></div>
+    const { users, products, dispatch, purchases } = this.props;
+    return (
+      <div>
+        <PurchaseForm dispatch={dispatch} users={users}/>
+        <PurchaseList purchases={purchases}/>
+      </div>
     );
   }
 }
@@ -14,7 +18,10 @@ export default class App extends Component {
 
 
 function mapStateToProps(state) {
-  return { users: state.get('users') };
+  return {
+    users: state.get('users'),
+    purchases: state.get('purchases')
+  };
 }
 
 export default connect(mapStateToProps)(App)
