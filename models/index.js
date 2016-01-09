@@ -4,13 +4,9 @@ var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(module.filename);
-var env       = process.env.NODE_ENV.toLowerCase() || 'development';
-var config    = require(__dirname + '/../config/config.json')[env];
+var env       = process.env.NODE_ENV || 'development';
 var db        = {};
-
-var sequelize = new Sequelize('tasuri', 'tasuri', 'tasuriapp', {
-  dialect: 'postgres'
-});
+var sequelize = new Sequelize(process.env.DATABASE_URL);
 
 fs
   .readdirSync(__dirname)
