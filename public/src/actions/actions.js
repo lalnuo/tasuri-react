@@ -15,7 +15,7 @@ const headers = {
 
 export function fetchUsers() {
   return dispatch => {
-    return fetch('http://localhost:9000/users')
+    return fetch('/users/')
       .then(response => response.json())
       .then(json => dispatch(receiveUsers(json)));
   }
@@ -23,7 +23,7 @@ export function fetchUsers() {
 
 export function fetchPurchases() {
   return dispatch => {
-    return fetch('http://localhost:9000/purchases')
+    return fetch('/purchases/')
       .then(response => response.json())
       .then(json => dispatch(receivePurchases(json)));
   }
@@ -55,7 +55,7 @@ function addPurchase(purchase) {
 }
 
 export function deletePurchase(purchaseId) {
-  fetch('http://localhost:9000/purchases/' + purchaseId, { method: 'DELETE' });
+  fetch('/purchases/' + purchaseId, { method: 'DELETE' });
   return {
     type: DELETE_PURCHASE,
     purchaseId: purchaseId
@@ -64,7 +64,7 @@ export function deletePurchase(purchaseId) {
 
 export function sendPurchase(purchase) {
     return dispatch => {
-      return fetch('http://localhost:9000/purchases', {
+      return fetch('/purchases/', {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(purchase)

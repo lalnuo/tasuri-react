@@ -4,13 +4,13 @@ export class BalanceList extends Component {
   render() {
     const { users } = this.props;
     const balances = users.map(user => {
-      return (<li>{user.get('name') } {user.get('balance')}</li>)
+      return <pre>{ user.get('name') }: {user.get('balance')}</pre>;
     })
 
     return (
-      <ul>
+      <div>
         {balances}
-      </ul>
+      </div>
     );
   }
 }
