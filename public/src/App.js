@@ -22,8 +22,6 @@ export default class App extends Component {
   }
 }
 
-
-
 function mapStateToProps(state) {
   return {
     users: state.get('users'),
