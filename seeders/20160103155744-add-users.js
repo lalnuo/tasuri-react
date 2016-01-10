@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up: function (queryInterface, Sequelize, done) {
     return queryInterface.bulkInsert('Users', [
       {
         name: 'Lalli',
@@ -13,6 +13,6 @@ module.exports = {
         createdAt: "2015-11-01T12:31:56.451Z",
         updatedAt: "2015-11-01T12:31:56.451Z"
       }
-  ])
+  ], {})
   }
 };
