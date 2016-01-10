@@ -36,34 +36,35 @@ export class PurchaseForm extends Component {
       return <option value={user.get('id')} key={user.get('id')}>{user.get('name')}</option>
     });
     return (
-      <form className="pure-form pure-form-stacked">
-        <fieldset className="pure-group">
-        <label>Ostaja</label>
+      <form className="purchase-form pure-form">
         <select
+          className="purchase-form-field"
           value={this.state.userId}
           onChange={this.updateField.bind(this, 'userId')}>
           {options}
         </select>
-        <label>Tuotteen nimi</label>
         <input
+          className="purchase-form-field"
           value={this.state.name}
           onChange={this.updateField.bind(this, 'name')}
           placeholder="Tuotteen nimi"
-          type="text">
+          type="text"
+          required
+          >
         </input>
-        <label>Hinta</label>
         <input
+          className="purchase-form-field"
           value={this.state.price}
           onChange={this.updateField.bind(this, 'price')}
           type="number"
           placeholder="Hinta"
+          required
           ></input>
         <button
-          className="button-success pure-button"
+          className="purchase-form-button button-success pure-button"
           onClick={this.createPurchase.bind(this)}>
           Lisää
         </button>
-        </fieldset>
       </form>
     );
   }

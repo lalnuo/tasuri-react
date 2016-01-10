@@ -9,14 +9,11 @@ export default class App extends Component {
     const { users, dispatch, purchases } = this.props;
     return (
       <div class="pure-g">
-        <div className="pure-u-1-3"/>
-        <div className="pure-u-1-3">
+        <div className="container-div pure-u-5-5">
           <BalanceList users={users}/>
           <PurchaseForm dispatch={dispatch} users={users}/>
-          <br/>
           <PurchaseList dispatch={dispatch} users={users} purchases={purchases}/>
         </div>
-        <div className="pure-u-1-3"/>
     </div>
     );
   }

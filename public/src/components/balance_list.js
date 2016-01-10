@@ -4,11 +4,11 @@ export class BalanceList extends Component {
   render() {
     const { users } = this.props;
     const balances = users.map(user => {
-      return <pre>{ user.get('name') }: {user.get('balance')}</pre>;
+      return <h3>{ user.get('name') }: {user.get('balance')} </h3>;
     })
 
     return (
-      <div>
+      <div className="balance-list">
         {balances}
       </div>
     );

@@ -9,7 +9,7 @@ export class PurchaseList extends Component {
       return <Purchase dispatch={dispatch} user={user} purchase={purchase}/>
     });
     return (
-      <table className="pure-table pure-table-horizontal">
+      <table className="purchase-list pure-table pure-table-horizontal">
         <thead>
           <tr>
             <td>Päivämäärä</td>

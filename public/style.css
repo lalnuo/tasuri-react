@@ -8,9 +8,39 @@
 }
 
 .button-success {
-    background: rgb(28, 184, 65); /* this is a green */
+    background: #4D7094;
 }
 
 .button-warning {
-    background: rgb(202, 60, 60); /* this is a maroon */
+    background: #4D7094;
+}
+
+* {
+  font-family: Arial;
+}
+.container-div {
+  height: 100% !important;
+}
+
+.balance-list {
+  display: inline-block;
+}
+
+.balance-list h3 {
+  margin-right: 5px;
+  float: left;
+}
+
+.purchase-form-field {
+    margin-left: 5px;
+}
+
+.purchase-list {
+  margin-top: 10px;
+  background-color: #E6F1FC;
+  width: 100%;
+}
+
+body {
+  background-color: #F5F5F5;
 }
