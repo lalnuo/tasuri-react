@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './public/src/index'
+    './frontend/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -41,7 +41,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, './public/src')
+        include: path.join(__dirname, './frontend')
     }]
   }
 };

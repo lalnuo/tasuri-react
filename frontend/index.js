@@ -1,5 +1,5 @@
 require('pure');
-require('../style.css');
+require('./style.css');
 
 import React from 'react';
 import { render } from 'react-dom';

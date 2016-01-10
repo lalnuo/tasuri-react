@@ -3,7 +3,6 @@ var router = express.Router();
 var models = require('../models');
 
 router.get('/', function(req, res, next) {
-  console.log('FETCHING')
   models.Purchase.findAll().then(purchases => res.json(purchases));
 });
 

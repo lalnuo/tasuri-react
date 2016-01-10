@@ -1,3 +1,7 @@
+* {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+
 .button-success,
 .button-error,
 .button-warning,
@@ -15,23 +19,21 @@
     background: #4D7094;
 }
 
-* {
-  font-family: Arial;
-}
 .container-div {
+  margin-left: 5px;
   height: 100% !important;
 }
 
 .balance-list {
-  display: inline-block;
-}
-
-.balance-list h3 {
-  margin-right: 5px;
-  float: left;
+  margin-left: 5px;
+  list-style-type: none;
 }
 
 .purchase-form-field {
+    margin-left: 5px;
+}
+
+.purchase-form-button {
     margin-left: 5px;
 }
 
