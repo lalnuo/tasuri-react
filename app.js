@@ -3,6 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var webpack = require('webpack');
 var env = process.env.NODE_ENV === 'PRODUCTION' ? 'prod' : 'dev';
+console.log(env)
+
 var config = require('./webpack.config.' + env);
 var routes = require('./routes/index');
 var users = require('./routes/users');
