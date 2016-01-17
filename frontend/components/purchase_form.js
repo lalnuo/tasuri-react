@@ -16,12 +16,12 @@ export class PurchaseForm extends Component {
     this.setState(stateObject);
   }
 
-  createPurchase(event) {
+  createPurchase(double, event) {
     event.preventDefault();
     let purchase = {
       name: this.state.name,
-      price: this.state.price,
-      userId: parseInt(this.state.userId)
+      price: double ? 2 * this.state.price : this.state.price,
+      userId: parseFloat(this.state.userId)
     };
     this.setState({name: '', price: 0})
     this.props.dispatch(sendPurchase(purchase));
@@ -59,13 +59,20 @@ export class PurchaseForm extends Component {
             value={this.state.price}
             onChange={this.updateField.bind(this, 'price')}
             type="number"
+            step="any"
             placeholder="Hinta"
             required
             ></input>
           <button
             className="purchase-form-button button-success pure-button"
-            onClick={this.createPurchase.bind(this)}>
+            onClick={this.createPurchase.bind(this, false)}>
             Lisää
+          </button>
+
+          <button
+            className="purchase-form-button button-success pure-button"
+            onClick={this.createPurchase.bind(this, true)}>
+            Lisää tuplana
           </button>
         </form>
       </div>
